@@ -1,0 +1,24 @@
+[
+  {
+    "id": "UV2NvITeCMf8aa7tKZHy8",
+    "vendor": "CLASSIC Fast Food",
+    "amount": 1921.5,
+    "currency": "INR",
+    "purchasedAt": "2023-06-09T22:01:00",
+    "category": "Fast Food",
+    "extractedText": "CLASSIC\nFast Food\n466, Mehta Building\nNathalal Parekh Marg,Matunga\nMatunga (C.Rly), Mumbai-19\nPh:24096599,3204,6447\n--- Tax Invoice ---\nDate : 09/06/23 Bill No. * 25966\nT.No. : 40 W. No. : 17\n-----------------------------\nParticulars Qty Rate Amount\n-----------------------------\nONION RAVA SADA 1 145 145\nGARLIC CHATNI 1 85 85\nPAV BHAJI 4 200 800\nCHEESE PAV BHAJI 1 235 235\nPAV (1PC) 8 20 160\nVEG PULAV 1 215 215\nFRESH LIME SODA 2 70 140\nCHAAS 1 50 50\n-----------------------------\nSub Total : 1830.00\nCGST @2.5% On 1830 : 45.75\nSGST @2.5% On 1830 : 45.75\n-----------------------------\nFood Total : 1921.50\n-----------------------------\n8/19 Total : 1921\n-----------------------------\nGST NO. 27ABEPS5356E2ZH (10:01 PM)\nFSSAI NO. 11517003000102\nE.&O.E. Thank You Visit Again",
+    "sourceFileName": "bill1.webp",
+    "createdAt": "2026-05-18T14:49:36.125Z"
+  },
+  {
+    "id": "BPSTPOJsRnzIYc3T9o91y",
+    "vendor": null,
+    "amount": 2212.1,
+    "currency": null,
+    "purchasedAt": null,
+    "category": "Restaurant",
+    "extractedText": "Cashier :RAM\nCovers: 0\n\nDish               Qty     Amnt\nLahori Murgh Tandoori F  1 *   180.00\nTsf Platter Paneer Aati  2 *   300.00\nPapad                    5 *    75.00\nAssorted Veg Platter     2 *   500.00.\nTsf Platter Kadhai Pane  2 *   300.00\nChoice Of Juice          4 *   160.00\nAerated Water            2 *    60.00\nBottled Water            3 *    36.00\nPremium Whisky           4 #   100.00\nBeer Bottle              5 #   300.00\n                       2011.00\nService Charge @10.00 : + 201.10",
+    "sourceFileName": "1.jpg",
+    "createdAt": "2026-05-18T14:54:39.648Z"
+  }
+]
