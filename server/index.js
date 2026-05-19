@@ -144,15 +144,19 @@ app.use((error, _req, res, _next) => {
   });
 });
 
-const server = app.listen(port, () => {
-  console.log(`Expense OCR API running at http://localhost:${port}`);
-});
+if (!process.env.VERCEL) {
+  const server = app.listen(port, () => {
+    console.log(`Expense OCR API running at http://localhost:${port}`);
+  });
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`Port ${port} is already in use. Kill the process using it and restart.`);
-    process.exit(1);
-  } else {
-    throw err;
-  }
-});
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`Port ${port} is already in use. Kill the process using it and restart.`);
+      process.exit(1);
+    } else {
+      throw err;
+    }
+  });
+}
+
+export default app;
