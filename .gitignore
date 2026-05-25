@@ -54,3 +54,7 @@ copilot-messages.log
 # Sensitive files and credentials
 .env
 server/service-account.json
+
+# Dependencies and build outputs
+node_modules/
+dist/
