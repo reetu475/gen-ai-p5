@@ -1,4 +1,6 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import '../config/env.js';
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
+import { HumanMessage } from '@langchain/core/messages';
 
 function parseJson(text) {
   const cleaned = text
@@ -26,22 +28,31 @@ export async function extractExpenseText({ buffer, mimeType }) {
     throw new Error('GEMINI_API_KEY is missing. Add it to .env before uploading receipts.');
   }
 
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+  // Use LangChain's ChatGoogleGenerativeAI for automatic LangSmith tracing
+  const model = new ChatGoogleGenerativeAI({
+    model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+    apiKey: apiKey,
+  });
 
   const imageBase64 = buffer.toString('base64');
   const maxAttempts = 4;
   let attempt = 0;
   let responseText;
 
+  const systemPrompt = 'Extract all readable text from this expense receipt or bill. Return only valid JSON with keys: extractedText, vendor, amount, currency, purchasedAt, category. Use null for unknown fields. Keep extractedText as readable plain text with line breaks. Do not include markdown.';
+
   while (attempt < maxAttempts) {
     try {
-      const result = await model.generateContent([
-        'Extract all readable text from this expense receipt or bill. Return only valid JSON with keys: extractedText, vendor, amount, currency, purchasedAt, category. Use null for unknown fields. Keep extractedText as readable plain text with line breaks. Do not include markdown.',
-        { inlineData: { mimeType, data: imageBase64 } }
-      ]);
+      // Create a message with the image data - LangChain will trace this automatically
+      const message = new HumanMessage({
+        content: [
+          { type: 'text', text: systemPrompt },
+          { type: 'image_url', image_url: `data:${mimeType};base64,${imageBase64}` }
+        ]
+      });
 
-      responseText = result.response.text();
+      const result = await model.invoke([message]);
+      responseText = result.content;
       console.log('[ocrService] Gemini response:', responseText.slice(0, 300));
       break;
     } catch (error) {

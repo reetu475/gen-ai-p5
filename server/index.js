@@ -1,15 +1,15 @@
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
+import { logLangSmithStatus } from './config/env.js';
 import { extractExpenseText } from './services/ocrService.js';
 import { createExpense, deleteExpense, getExpenseById, getExpenses, updateExpense } from './services/expenseStore.js';
 
-dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 5001;
+
+logLangSmithStatus();
 
 // Connect to MongoDB
 mongoose
